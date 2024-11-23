@@ -6,17 +6,35 @@
         xmlns:local="clr-namespace:deAirport2"
         mc:Ignorable="d"
         Title="SeatSelectionWindow" Height="450" Width="800">
-    <Grid Margin="10">
-        <StackPanel>
-            <TextBlock Text="Выберите место" FontWeight="Bold" FontSize="16" Margin="0,0,0,20" />
+     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="200" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-            <ListBox ItemsSource="{Binding AvailableSeats}" 
-                     SelectedItem="{Binding SelectedSeat, Mode=TwoWay}" 
-                     Width="300" Height="150" />
+        <!-- Заголовок -->
+        <TextBlock Text="Выберите место в самолете" FontSize="20" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="10" />
 
-            <Button Content="Подтвердить выбор" 
-                    Command="{Binding ConfirmSeatCommand}" 
-                    Width="200" Height="40" HorizontalAlignment="Center" />
-        </StackPanel>
+        <!-- Сетка с местами -->
+        <UniformGrid Grid.Row="1" Rows="6" Columns="2" HorizontalAlignment="Center" Margin="10">
+            <ToggleButton Margin="2" Content="A1" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="A2" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="B1" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="B2" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="C1" Checked="Seat_Checked" />
+            <ToggleButton Margin="2" Content="C2" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="D1" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="D2" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="E1" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="E2" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="F1" Checked="Seat_Checked"  />
+            <ToggleButton Margin="2" Content="F2" Checked="Seat_Checked"  />
+        </UniformGrid>
+
+        <!-- Кнопка подтверждения -->
+        <Button Content="Подтвердить выбор" Grid.Row="2" Width="200" Height="40"
+                HorizontalAlignment="Center" Margin="10" Click="Confirm_Click" />
     </Grid>
 </Window>

@@ -117,17 +117,17 @@ namespace deAirport2
                         //);
                             for (int i = 0; i<101;i++)
                                 availableSeats.Add(i.ToString());
-                            var seatSelectionViewModel = new SeatSelectionViewModel(availableSeats);
-                            var seatSelectionWindow = new SeatSelectionWindow(seatSelectionViewModel);
+                            //var seatSelectionViewModel = new SeatSelectionViewModel(availableSeats);
+                            var seatSelectionWindow = new SeatSelectionWindow();
                             seatSelectionWindow.ShowDialog();
 
-                            if (string.IsNullOrEmpty(seatSelectionViewModel.SelectedSeat))
-                            {
-                                MessageBox.Show("Выбор места не завершен.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                return;
-                            }
+                            //if (string.IsNullOrEmpty(seatSelectionViewModel.SelectedSeat))
+                            //{
+                            //    MessageBox.Show("Выбор места не завершен.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            //    return;
+                            //}
                             
-                            ticket.НомерМеста = Convert.ToInt32(seatSelectionViewModel.SelectedSeat);
+                            ticket.НомерМеста = Convert.ToInt32(seatSelectionWindow.SelectedSeat);
                             context.SaveChanges();
 
                             FlightDetails = new FlightDetails
