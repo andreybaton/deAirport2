@@ -12,7 +12,8 @@
 
             <TextBlock Text="Номер рейса:" FontWeight="Bold" />
             <TextBlock Text="{Binding FlightNumber}" Margin="0,0,0,10" />
-
+            <TextBlock Text="Номер места:" FontWeight="Bold" />
+            <TextBlock Text="{Binding Seat}" Margin="0,0,0,10" />
             <TextBlock Text="Пункт отправления:" FontWeight="Bold" />
             <TextBlock Text="{Binding Departure}" Margin="0,0,0,10" />
 

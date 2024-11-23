@@ -40,6 +40,7 @@ namespace deAirport2
     public class FlightDetails
     {
         public string FlightNumber { get; set; }
+        public string Seat {  get; set; }
         public string Departure { get; set; }
         public string Destination { get; set; }
         public string DepartureTime { get; set; }
@@ -108,9 +109,31 @@ namespace deAirport2
                             .FirstOrDefault(a => a.КодАвиакомпании == flight.КодАвиакомпании && a.НазваниеАвиакомпании == SelectedHeadquarter);
                         if (airline != null)
                         {
+                            var availableSeats = new ObservableCollection<string>();
+                                //(
+                        //    context.Билетыs
+                        //        .Where(t => t.НомерРейса == flight.НомерРейса && string.IsNullOrEmpty(t.НомерМеста.ToString()))
+                        //        .Select(t => t.НомерМеста.ToString() ?? "Место " + t.НомерБилета)
+                        //);
+                            for (int i = 0; i<101;i++)
+                                availableSeats.Add(i.ToString());
+                            var seatSelectionViewModel = new SeatSelectionViewModel(availableSeats);
+                            var seatSelectionWindow = new SeatSelectionWindow(seatSelectionViewModel);
+                            seatSelectionWindow.ShowDialog();
+
+                            if (string.IsNullOrEmpty(seatSelectionViewModel.SelectedSeat))
+                            {
+                                MessageBox.Show("Выбор места не завершен.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return;
+                            }
+                            
+                            ticket.НомерМеста = Convert.ToInt32(seatSelectionViewModel.SelectedSeat);
+                            context.SaveChanges();
+
                             FlightDetails = new FlightDetails
                             {
                                 FlightNumber = flight.НомерРейса,
+                                Seat = ticket.НомерМеста.ToString(),
                                 Departure = flight.ПунктОтправления,
                                 Destination = flight.ПунктПрибытия,
                                 DepartureTime = flight.ВремяВылета,
