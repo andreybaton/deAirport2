@@ -36,36 +36,49 @@ namespace deAirport2
             var button = sender as ToggleButton;
             if (button != null)
             {
+                ResetToggleButtons(Seats, button);
                 SelectedSeatName = (string)button.Content;
                 int btncntnt = 0;
-                if (SelectedSeatName == "A1")
-                    btncntnt = 11;
-                else if (SelectedSeatName == "A2")
-                    btncntnt = 12;
-                else if(SelectedSeatName == "B1")
-                    btncntnt = 21;
-                else if(SelectedSeatName == "B2")
-                    btncntnt = 22;
-                else if(SelectedSeatName == "C1")
-                    btncntnt = 31;
-                else if(SelectedSeatName == "C2")
-                    btncntnt = 32;
-                else if(SelectedSeatName == "D1")
-                    btncntnt = 41;
-                else if(SelectedSeatName == "D2")
-                    btncntnt = 42;
-                else if(SelectedSeatName == "E1")
-                    btncntnt = 51;
-                else if(SelectedSeatName == "E2")
-                    btncntnt = 52;
-                else if(SelectedSeatName == "F1")
-                    btncntnt = 61;
-                else if(SelectedSeatName == "F2")
-                    btncntnt = 62;
+                char columnChar = SelectedSeatName[0];
+                int column = char.ToUpper(columnChar) - 'A' + 1;
+                int row = Convert.ToInt32(SelectedSeatName[1]);
+                btncntnt = (column * 10) + row-48;
+                //MessageBox.Show(btncntnt.ToString());
                 SelectedSeat = btncntnt;
+                //MessageBox.Show(column.ToString());
+                //if (SelectedSeatName == "A1")
+                //    btncntnt = 11;
+                //else if (SelectedSeatName == "A2")
+                //    btncntnt = 12;
+                //else if(SelectedSeatName == "B1")
+                //    btncntnt = 21;
+                //else if(SelectedSeatName == "B2")
+                //    btncntnt = 22;
+                //else if(SelectedSeatName == "C1")
+                //    btncntnt = 31;
+                //else if(SelectedSeatName == "C2")
+                //    btncntnt = 32;
+                //else if(SelectedSeatName == "D1")
+                //    btncntnt = 41;
+                //else if(SelectedSeatName == "D2")
+                //    btncntnt = 42;
+                //else if(SelectedSeatName == "E1")
+                //    btncntnt = 51;
+                //else if(SelectedSeatName == "E2")
+                //    btncntnt = 52;
+                //else if(SelectedSeatName == "F1")
+                //    btncntnt = 61;
+                //else if(SelectedSeatName == "F2")
+                //    btncntnt = 62;
+
             }
         }
-
+        public void ResetToggleButtons(Panel panel, ToggleButton checkedButton)
+        {
+            foreach (var child in panel.Children)
+                if (child is ToggleButton button && button != checkedButton)
+                    button.IsChecked = false;
+        }
         // Подтверждение выбора
         private void Confirm_Click(object sender, RoutedEventArgs e)
         {

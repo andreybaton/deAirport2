@@ -18,7 +18,8 @@
                    HorizontalAlignment="Center" Margin="10" />
 
         <!-- Сетка с местами -->
-        <UniformGrid Grid.Row="1" Rows="6" Columns="2" HorizontalAlignment="Center" Margin="10">
+         
+        <UniformGrid Grid.Row="1" Rows="6" Columns="2" HorizontalAlignment="Center" Margin="10" x:Name="Seats">
             <ToggleButton Margin="2" Content="A1" Checked="Seat_Checked"  />
             <ToggleButton Margin="2" Content="A2" Checked="Seat_Checked"  />
             <ToggleButton Margin="2" Content="B1" Checked="Seat_Checked"  />
