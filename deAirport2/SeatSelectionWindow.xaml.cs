@@ -43,33 +43,9 @@ namespace deAirport2
                 int column = char.ToUpper(columnChar) - 'A' + 1;
                 int row = Convert.ToInt32(SelectedSeatName[1]);
                 btncntnt = (column * 10) + row-48;
-                //MessageBox.Show(btncntnt.ToString());
+
                 SelectedSeat = btncntnt;
-                //MessageBox.Show(column.ToString());
-                //if (SelectedSeatName == "A1")
-                //    btncntnt = 11;
-                //else if (SelectedSeatName == "A2")
-                //    btncntnt = 12;
-                //else if(SelectedSeatName == "B1")
-                //    btncntnt = 21;
-                //else if(SelectedSeatName == "B2")
-                //    btncntnt = 22;
-                //else if(SelectedSeatName == "C1")
-                //    btncntnt = 31;
-                //else if(SelectedSeatName == "C2")
-                //    btncntnt = 32;
-                //else if(SelectedSeatName == "D1")
-                //    btncntnt = 41;
-                //else if(SelectedSeatName == "D2")
-                //    btncntnt = 42;
-                //else if(SelectedSeatName == "E1")
-                //    btncntnt = 51;
-                //else if(SelectedSeatName == "E2")
-                //    btncntnt = 52;
-                //else if(SelectedSeatName == "F1")
-                //    btncntnt = 61;
-                //else if(SelectedSeatName == "F2")
-                //    btncntnt = 62;
+                
 
             }
         }
@@ -94,43 +70,5 @@ namespace deAirport2
             this.Close();
         }
     }
-    //public class SeatSelectionViewModel : INotifyPropertyChanged
-    //{
-    //    private string _selectedSeat;
-
-    //    public ObservableCollection<string> AvailableSeats { get; set; }
-    //    public string SelectedSeat
-    //    {
-    //        get => _selectedSeat;
-    //        set { _selectedSeat = value; OnPropertyChanged(); }
-    //    }
-
-    //    public RelayCommand ConfirmSeatCommand { get; }
-
-    //    public SeatSelectionViewModel(ObservableCollection<string> availableSeats)
-    //    {
-    //        AvailableSeats = availableSeats;
-    //        ConfirmSeatCommand = new RelayCommand(ConfirmSeat);
-    //    }
-
-    //    private void ConfirmSeat()
-    //    {
-    //        if (string.IsNullOrEmpty(SelectedSeat))
-    //        {
-    //            MessageBox.Show("Пожалуйста, выберите место.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-    //            return;
-    //        }
-
-    //        // Закрываем окно после успешного выбора
-    //        Application.Current.Windows
-    //            .OfType<SeatSelectionWindow>()
-    //            .FirstOrDefault()?.Close();
-    //    }
-
-    //    public event PropertyChangedEventHandler PropertyChanged;
-    //    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-    //    {
-    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    //    }
-    //}
+    
 }

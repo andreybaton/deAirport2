@@ -14,17 +14,6 @@ using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.Linq;
 
-//using (MyDataBaseКольцоваContext db = new MyDataBaseКольцоваContext())
-//{
-//    var users = db.Авиакомпанииs.ToList();
-//    //foreach (var user in users)
-//    //{
-//    //    MessageBox.Show(user.ШтабКвартира);
-//    //}
-//}
-
-
-
 namespace deAirport2
 {
     public partial class MainWindow : Window
@@ -35,6 +24,15 @@ namespace deAirport2
             DataContext = new MainViewModel();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.Text, 0);
+        }
     }
 
     public class FlightDetails
@@ -48,7 +46,7 @@ namespace deAirport2
     }
     public class MainViewModel : INotifyPropertyChanged
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
+        
         private ObservableCollection<string> _companyName;
         public ObservableCollection<string> Headquarters
         {
@@ -82,12 +80,7 @@ namespace deAirport2
             set { _flightDetails = value; OnPropertyChanged(); }
         }
         public RelayCommand ValidateRegistrationCommand { get; }
-        //public class FlightDetails
-        //{
-        //    public string FlightNumber { get; set; }
-        //    public DateTime DepartureTime { get; set; }
-        //    public string Destination { get; set; }
-        //}
+
         public MainViewModel()
         {
             LoadShtabs();
@@ -110,22 +103,12 @@ namespace deAirport2
                         if (airline != null)
                         {
                             var availableSeats = new ObservableCollection<string>();
-                                //(
-                        //    context.Билетыs
-                        //        .Where(t => t.НомерРейса == flight.НомерРейса && string.IsNullOrEmpty(t.НомерМеста.ToString()))
-                        //        .Select(t => t.НомерМеста.ToString() ?? "Место " + t.НомерБилета)
-                        //);
+                               
                             for (int i = 0; i<101;i++)
-                                availableSeats.Add(i.ToString());
-                            //var seatSelectionViewModel = new SeatSelectionViewModel(availableSeats);
+                                availableSeats.Add(i.ToString());                      
                             var seatSelectionWindow = new SeatSelectionWindow();
                             seatSelectionWindow.ShowDialog();
 
-                            //if (string.IsNullOrEmpty(seatSelectionViewModel.SelectedSeat))
-                            //{
-                            //    MessageBox.Show("Выбор места не завершен.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            //    return;
-                            //}
                             
                             ticket.НомерМеста = Convert.ToInt32(seatSelectionWindow.SelectedSeat);
                             context.SaveChanges();
@@ -146,30 +129,7 @@ namespace deAirport2
                     }
                 }
                 MessageBox.Show("регистрация не пройдена");
-                //var flight = context.Рейсыs
-                //    .FirstOrDefault(f => f.КодАвиакомпании == SelectedShtab &&
-                //                         f. == UserCode &&
-                //                         f.TicketCode == TicketCode);
-
-                //if (flight != null)
-                //{
-                //    // Успешная регистрация
-                //    FlightDetails = new FlightDetails
-                //    {
-                //        FlightNumber = flight.FlightNumber,
-                //        DepartureTime = flight.DepartureTime,
-                //        Destination = flight.Destination
-                //    };
-
-                //    // Открытие нового окна
-                //    var detailsWindow = new FlightDetailsWindow(FlightDetails);
-                //    detailsWindow.Show();
-                //}
-                //else
-                //{
-                //    // Регистрация не удалась
-                //    MessageBox.Show("Регистрация не пройдена. Проверьте данные.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                //}
+               
             }
         }
         private void LoadShtabs()
@@ -186,15 +146,12 @@ namespace deAirport2
                 );
             }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
-
-        // Данные полета
-        
         
     }
     public class RelayCommand : ICommand

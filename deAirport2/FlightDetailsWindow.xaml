@@ -5,26 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:deAirport2"
         mc:Ignorable="d"
-        Title="FlightDetailsWindow" Height="450" Width="800">
-    <Grid Margin="10">
-        <StackPanel>
-            <TextBlock Text="Детали рейса" FontWeight="Bold" FontSize="16" Margin="0,0,0,20" />
-
-            <TextBlock Text="Номер рейса:" FontWeight="Bold" />
-            <TextBlock Text="{Binding FlightNumber}" Margin="0,0,0,10" />
-            <TextBlock Text="Номер места:" FontWeight="Bold" />
-            <TextBlock Text="{Binding Seat}" Margin="0,0,0,10" />
-            <TextBlock Text="Пункт отправления:" FontWeight="Bold" />
-            <TextBlock Text="{Binding Departure}" Margin="0,0,0,10" />
-
-            <TextBlock Text="Пункт прибытия:" FontWeight="Bold" />
-            <TextBlock Text="{Binding Destination}" Margin="0,0,0,10" />
-
-            <TextBlock Text="Время вылета:" FontWeight="Bold" />
-            <TextBlock Text="{Binding DepartureTime}" Margin="0,0,0,10" />
-
-            <TextBlock Text="Время в пути:" FontWeight="Bold" />
-            <TextBlock Text="{Binding Duration}" Margin="0,0,0,10" />
+        Title="FlightDetailsWindow" Height="350" Width="800" FontSize="17" FontFamily="Microsoft YaHei UI Light">
+    <Grid Margin="50">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel  Grid.ColumnSpan="3" Grid.RowSpan="7" Background="#F3F3E0">
+            <TextBlock Text="BOARDING PASS/ПОСАДОЧНЫЙ ТАЛОН" FontFamily="Bahnschrift SemiBold" FontWeight="Bold" 
+                       FontSize="19" Width="348" />
         </StackPanel>
+        
+        <TextBlock Text="Номер рейса:" Width="126" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding FlightNumber}" Height="25" Width="101" Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <TextBlock Text="Номер места:" Width="126" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding Seat}" Width="63" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <TextBlock Text="Пункт отправления:" Width="166" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding Departure}" Width="182" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+
+        <TextBlock Text="Пункт прибытия:" Width="141" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding Destination}" Width="182" Grid.Column="1" Grid.Row="4" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <TextBlock Text="Время вылета:" Width="141" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding DepartureTime}" Width="126" Grid.Column="1" Grid.Row="5" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        <TextBlock Text="Время в пути:" Width="141" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
+        <TextBlock Text="{Binding Duration}" Width="126" Grid.Column="1" Grid.Row="6" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
     </Grid>
 </Window>
