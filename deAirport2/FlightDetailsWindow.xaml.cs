@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
+//using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using System.IO;
+using iText.Kernel.Font;
+using iText.IO.Font;
+
 
 namespace deAirport2
 {
@@ -19,9 +26,11 @@ namespace deAirport2
     /// </summary>
     public partial class FlightDetailsWindow : Window
     {
+        private readonly FlightDetails flightDetails;
         public FlightDetailsWindow(FlightDetails flightDetails)
         {
             InitializeComponent();
+            this.flightDetails = flightDetails;
             //string seat = flightDetails.Seat;
             int chislo = Convert.ToInt32(flightDetails.Seat);
             int col = chislo / 10;
@@ -31,31 +40,44 @@ namespace deAirport2
             //MessageBox.Show(seatete);
             flightDetails.Seat = seatstr;
             DataContext = flightDetails;
+
             
-            //if (flightDetails.Seat == "11")
-            //    flightDetails.Seat = "A1";
-            //else if (flightDetails.Seat == "12")
-            //    flightDetails.Seat = "A2";
-            //else if (flightDetails.Seat == "21")
-            //    flightDetails.Seat = "B1";
-            //else if (flightDetails.Seat == "22")
-            //    flightDetails.Seat = "B2";
-            //else if (flightDetails.Seat == "31")
-            //    flightDetails.Seat = "C1";
-            //else if (flightDetails.Seat == "32")
-            //    flightDetails.Seat = "C2";
-            //else if (flightDetails.Seat == "41")
-            //    flightDetails.Seat = "D1";
-            //else if (flightDetails.Seat == "42")
-            //    flightDetails.Seat = "D2";
-            //else if (flightDetails.Seat == "51")
-            //    flightDetails.Seat = "E1";
-            //else if (flightDetails.Seat == "52")
-            //    flightDetails.Seat = "E2";
-            //else if (flightDetails.Seat == "61")
-            //    flightDetails.Seat = "F1";
-            //else if (flightDetails.Seat == "62")
-            //    flightDetails.Seat = "F1";
+        }
+        public void ExportToPdf()
+        {
+            string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "FlightTicket.pdf");
+            string fontPath = @"C:\Windows\Fonts\arial.ttf";
+            using (PdfWriter writer = new PdfWriter(filePath))
+            {
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                   // string idFlight = flightDetails.;
+                    Document document = new Document(pdf);
+
+                    PdfFont font = PdfFontFactory.CreateFont(fontPath,PdfEncodings.IDENTITY_H);
+                    document.SetFont(font); 
+
+                    document.Add(new Paragraph("Электронный билет").SetFontSize(18).SimulateBold());
+                    document.Add(new Paragraph($"Номер рейса: {flightDetails.FlightNumber}"));
+                    document.Add(new Paragraph($"Время отправления: {flightDetails.DepartureTime}"));
+                    document.Add(new Paragraph($"Место отправления: {flightDetails.Departure}"));
+                    document.Add(new Paragraph($"Время полета: {flightDetails.Duration}"));
+                    document.Add(new Paragraph($"Место прибытия: {flightDetails.Destination}"));
+                    document.Add(new Paragraph($"Место в самолете: {flightDetails.Seat}"));
+                    //document.Add(new Paragraph($""));
+
+                    document.Add(new Paragraph("\n Спасибо, что выбрали нашу авиакомпанию!")
+                        .SetFontSize(12)
+                        //.SetFontFamily(iText.Kernel.Font.
+                        );
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ExportToPdf();
+            MessageBox.Show("Ваш билет успешно загружен на рабочий стол");
         }
     }
 }

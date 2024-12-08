@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:deAirport2"
         mc:Ignorable="d"
         Title="FlightDetailsWindow" Height="350" Width="800" FontSize="17" FontFamily="Microsoft YaHei UI Light">
+    <Grid>
     <Grid Margin="50">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -39,5 +40,8 @@
         <TextBlock Text="{Binding DepartureTime}" Width="126" Grid.Column="1" Grid.Row="5" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
         <TextBlock Text="Время в пути:" Width="141" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Bottom" Margin="10,0,0,0"/>
         <TextBlock Text="{Binding Duration}" Width="126" Grid.Column="1" Grid.Row="6" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+        
+    </Grid>
+        <Button FontSize="14" Width="50" Height="20" Margin="650,290,0,0" Click="Button_Click">To PDF</Button>
     </Grid>
 </Window>
